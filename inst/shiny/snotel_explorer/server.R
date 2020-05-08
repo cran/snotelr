@@ -347,7 +347,7 @@ server <- function(input, output, session) {
 
     # set colours
     labels_covariate_col <- "rgb(231,41,138)"
-    covariate_col <- "rgba(255,51,0,0.5)"
+    covariate_col <- "rgba(128,128,128,0.5)"
     primary_col <- "rgba(51,102,255,0.8)"
     envelope_col <- "rgba(128,128,128,0.05)"
     ltm_col <- "rgba(128,128,128,0.8)"
@@ -382,6 +382,7 @@ server <- function(input, output, session) {
           y = 0,
           text = "NO DATA AVAILABLE, SELECT A NEW SITE FOR PLOTTING",
           mode = "text",
+          type = "scatter",
           textfont = list(color = '#000000', size = 16)
         ) %>%
           layout(xaxis = ax, yaxis = ax)
@@ -391,6 +392,7 @@ server <- function(input, output, session) {
           y = 0,
           text = "SELECT A SITE FOR PLOTTING",
           mode = "text",
+          type = "scatter",
           textfont = list(color = '#000000', size = 16)
         ) %>%
           layout(xaxis = ax, yaxis = ax)
@@ -534,6 +536,9 @@ server <- function(input, output, session) {
           )
       } else if (input$plot_type == "yearly") {
 
+        # convert date to year
+        year <- format(as.Date(plot_data$date, "%Y-%m-%d"),"%Y")
+        
         # long term mean flux data
         ltm <- plot_data %>% 
           group_by(doy) %>%
@@ -543,22 +548,14 @@ server <- function(input, output, session) {
                     snowdoy = ifelse(mean(doy) < 182, mean(doy),
                                      mean(doy) - 366))
         
-        p <- ltm %>% plot_ly(
-          x = ~ snowdoy,
-          y = ~ mn,
-          mode = "lines",
-          type = 'scatter',
-          name = "LTM",
-          line = list(color = ltm_col),
-          inherit = FALSE
-        ) %>%
-          add_trace(
+        p <-  plot_ly(
+            data = ltm,
             x = ~ snowdoy,
             y = ~ ifelse((mn - sd) < 0, 0, mn - sd),
             mode = "lines",
             type = 'scatter',
             fill = "none",
-            line = list(width = 0, color = envelope_col),
+            line = list(width = 0, color = "rgb(200,200,200)"),
             showlegend = FALSE,
             name = "SD"
           ) %>%
@@ -568,9 +565,18 @@ server <- function(input, output, session) {
             type = 'scatter',
             mode = "lines",
             fill = "tonexty",
-            line = list(width = 0, color = envelope_col),
+            fillcolor = "rgb(200,200,200)",
+            line = list(width = 0, color = "rgb(200,200,200)"),
             showlegend = TRUE,
             name = "SD"
+          ) %>%
+          add_trace(
+            x = ~ snowdoy,
+            y = ~ mn,
+            mode = "lines",
+            type = 'scatter',
+            name = "LTM",
+            line = list(color = "black")
           ) %>%
           add_trace(data = plot_data,
                     x = ~ ifelse(doy < 182, doy, doy - 366),
@@ -578,15 +584,16 @@ server <- function(input, output, session) {
                     split = ~ year,
                     type = "scatter",
                     mode = "lines",
-                    name = primary_label,
+                    name = year,
                     line = list(color = "Set1"),
-                    showlegend = TRUE
+                    showlegend = TRUE,
+                    inherit = FALSE
           ) %>%
           layout(
             xaxis = list(title = "DOY"),
             yaxis = list(title = primary_label),
             title = sprintf("Site ID: %s",
-                            filteredData()[as.numeric(input$table_row_last_clicked),11])
+            filteredData()[as.numeric(input$table_row_last_clicked),11])
           )
 
       } else if (input$plot_type == "snow_phen") {
@@ -660,14 +667,14 @@ server <- function(input, output, session) {
             y = transition_data$first_snow_melt,
             mode = "markers",
             type = "scatter",
-            name = "SOS"
+            name = "EOS"
             ) %>%
             add_trace(
               x = transition_data$year,
               y = transition_data$cont_snow_acc,
               mode = "markers",
               type = "scatter",
-              name = "EOS"
+              name = "SOS"
             ) %>%
             add_trace(
               x = transition_data$year[as.numeric(

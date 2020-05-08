@@ -1,4 +1,4 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -27,19 +27,19 @@ cran <- check_cran()
 # a website using pkgdown
 #cran <- TRUE
 
-## ----eval = cran---------------------------------------------------------
+## ----eval = cran--------------------------------------------------------------
 # download and list site information
 site_meta_data <- snotel_info()
 head(site_meta_data)
 
-## ----eval = cran---------------------------------------------------------
+## ----eval = cran--------------------------------------------------------------
 # downloading data for a random site
 snow_data <- snotel_download(site_id = 670, internal = TRUE)
 
 # show the data
 head(snow_data)
 
-## ----fig.width = 7, fig.height=3, eval = cran----------------------------
+## ----fig.width = 7, fig.height=3, eval = cran---------------------------------
 # A plot of snow accummulation through the years
 plot(as.Date(snow_data$date),
      snow_data$snow_water_equivalent,
@@ -47,11 +47,11 @@ plot(as.Date(snow_data$date),
      xlab = "Date",
      ylab = "SWE (mm)")
 
-## ----eval = cran---------------------------------------------------------
+## ----eval = cran--------------------------------------------------------------
 # calculate snow phenology
 phenology <- snotel_phenology(snow_data)
 
-## ----fig.width = 7, fig.height=3, eval = cran----------------------------
+## ----fig.width = 7, fig.height=3, eval = cran---------------------------------
 # subset data to the first decade of the century
 snow_data_subset <- subset(snow_data, as.Date(date) > as.Date("2000-01-01") &
                              as.Date(date) < as.Date("2010-01-01"))
