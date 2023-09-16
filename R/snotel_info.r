@@ -3,7 +3,6 @@
 #' @param network network list to query (default = sntl, for SNOTEL)
 #' @param path path where to save the snotel information (site list)
 #' 
-#' @importFrom magrittr "%>%"
 #' @importFrom memoise memoise
 #' @importFrom rvest read_html
 #' 
@@ -28,16 +27,16 @@ snotel_info <- memoise::memoise(
   url <- "https://wcc.sc.egov.usda.gov/nwcc/yearcount?"
     
   # construct the query to be served to the server
-  query <- list("network" = network,
+  query <- list("network" = tolower(network),
                 "counttype" = "listwithdiscontinued")
     
   # query the data table
   df <- httr::GET(
     url = url,
-    query = query) %>%
-    rvest::read_html() %>%
-    rvest::html_nodes('h5~ table+ table') %>%
-    rvest::html_table() %>%
+    query = query) |>
+    rvest::read_html() |>
+    rvest::html_nodes('h5~ table+ table') |>
+    rvest::html_table() |>
     data.frame()
   
   # extract site id from site name
