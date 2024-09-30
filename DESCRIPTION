@@ -1,6 +1,6 @@
 Package: snotelr
 Title: Calculate and Visualize 'SNOTEL' Snow Data and Seasonality
-Version: 1.4
+Version: 1.5
 Authors@R: c(person(
                family = "Hufkens",
                given = "Koen",
@@ -26,9 +26,9 @@ ByteCompile: true
 RoxygenNote: 7.2.3
 Encoding: UTF-8
 NeedsCompilation: no
-Packaged: 2024-05-23 07:12:03 UTC; khufkens
+Packaged: 2024-09-30 10:59:53 UTC; khufkens
 Author: Koen Hufkens [aut, cre] (<https://orcid.org/0000-0002-5070-8109>),
   BlueGreen Labs [cph, fnd]
 Maintainer: Koen Hufkens <koen.hufkens@gmail.com>
 Repository: CRAN
-Date/Publication: 2024-05-23 07:40:05 UTC
+Date/Publication: 2024-09-30 11:20:08 UTC

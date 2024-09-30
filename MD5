@@ -1,15 +1,15 @@
-4ee6fe2c4ab192e9f9ddddef15c6879c *DESCRIPTION
+3d54530a8660caeac31331017ba12f83 *DESCRIPTION
 cb90acc58370e86969fc655d5c9f4f7a *NAMESPACE
-05581bcd4809d0fa7d9a0f1e08bf40a8 *R/snotel_download.r
+a97ff7c5a5553f9272537ed97afe511a *R/snotel_download.r
 bbb8ed61c242190da926391d76c39e7d *R/snotel_explorer.r
 95fbf6f37b534f49245694a81cf144f3 *R/snotel_info.r
-4d4289499d1c93d2ef8983735cf23281 *R/snotel_metric.r
+8009675eed1a96cec4ab7fbe619c2187 *R/snotel_metric.r
 f5a56b5a26981ce4d6c4dcd8202709cc *R/snotel_phenology.r
-71a9a00a84b681a8d5106993e55af47d *build/vignette.rds
+75514ec37109e4487b097f9bdbf7bf8b *build/vignette.rds
 8308b73f47cb5204d0502718ee02e9cf *inst/CITATION
 6943d018e7dcb951fef17b5711358d44 *inst/doc/snotelr-vignette.R
 1d32180c215c51b4154fd0da4726b213 *inst/doc/snotelr-vignette.Rmd
-7f886f6ea77c0857e24c9f146c4c7144 *inst/doc/snotelr-vignette.html
+1b108a312784d8215a391544d0396a20 *inst/doc/snotelr-vignette.html
 c5c350d9b860c99d4c3ecab27e800503 *inst/shiny/snotel_explorer/about.r
 ac858054af30bf9cb425af3f62c88f47 *inst/shiny/snotel_explorer/custom.css
 fab7624f22984b77d939a669bbe7501e *inst/shiny/snotel_explorer/help.r
@@ -23,5 +23,5 @@ df3a1c27e0619f24ee2d3b5c6f47051c *inst/shiny/snotel_explorer/ui.R
 19d7e09f34befd3cb11f5d3ea6951327 *man/snotel_metric.Rd
 03fb1c0a86c58e0800b456b8697370c3 *man/snotel_phenology.Rd
 d98c8021d36a44bba45b5b4dd2836884 *tests/testthat.r
-80f62c24a0c91f4b4a34929e796b3771 *tests/testthat/test_snotel_functions.r
+4491a9929ccde844c42376fc51271fee *tests/testthat/test_snotel_functions.r
 1d32180c215c51b4154fd0da4726b213 *vignettes/snotelr-vignette.Rmd
